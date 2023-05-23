@@ -4,9 +4,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.cn.hydra</groupId>
-    <artifactId>xxljob-autoregister-spring-boot-starter</artifactId>
-    <version>0.0.1</version>
+    <groupId>com.fu</groupId>
+    <artifactId>xxl-job-spring-boot-starter</artifactId>
+    <version>1.0.0</version>
 
     <properties>
         <java.version>8</java.version>

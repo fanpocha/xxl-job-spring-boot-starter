@@ -3,6 +3,8 @@ package com.xxl.job.plus.executor.service.impl;
 import cn.hutool.http.HttpRequest;
 import cn.hutool.http.HttpResponse;
 import com.xxl.job.plus.executor.service.JobLoginService;
+import com.xxl.job.plus.executor.service.XxlJobProperties;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -20,23 +22,19 @@ import java.util.Optional;
 @Service
 public class JobLoginServiceImpl implements JobLoginService {
 
-    @Value("${xxl.job.admin.addresses}")
-    private String adminAddresses;
+    @Autowired
+    private XxlJobProperties xxlJobProperties;
 
-    @Value("${xxl.job.admin.username}")
-    private String username;
 
-    @Value("${xxl.job.admin.password}")
-    private String password;
 
     private final Map<String,String> loginCookie=new HashMap<>();
 
     @Override
     public void login() {
-        String url=adminAddresses+"/login";
+        String url=xxlJobProperties.getAdminAddresses()+"/login";
         HttpResponse response = HttpRequest.post(url)
-                .form("userName",username)
-                .form("password",password)
+                .form("userName",xxlJobProperties.getUsername())
+                .form("password",xxlJobProperties.getPassword())
                 .execute();
         List<HttpCookie> cookies = response.getCookies();
         Optional<HttpCookie> cookieOpt = cookies.stream()
