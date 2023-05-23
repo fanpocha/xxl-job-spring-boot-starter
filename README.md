@@ -14,9 +14,9 @@ mvn clean install
 
 ```xml
 <dependency>
-    <groupId>com.cn.hydra</groupId>
-    <artifactId>xxljob-autoregister-spring-boot-starter</artifactId>
-    <version>0.0.1</version>
+    <groupId>com.fu</groupId>
+    <artifactId>xxl-job-spring-boot-starter</artifactId>
+    <version>1.0.0</version>
 </dependency>
 ```
 
@@ -31,10 +31,15 @@ server.port=8082
 xxl.job.admin.addresses=http://127.0.0.1:8080/xxl-job-admin
 xxl.job.accessToken=default_token
 xxl.job.executor.appname=xxl-job-executor-test
+#非必填写
 xxl.job.executor.address=
+#非必填写
 xxl.job.executor.ip=127.0.0.1
-xxl.job.executor.port=9999
+#非必填写
+xxl.job.executor.port=9999 
+#非必填写
 xxl.job.executor.logpath=/data/applogs/xxl-job/jobhandler
+#非必填写
 xxl.job.executor.logretentiondays=30
 
 # 新增配置项，必须项
@@ -42,14 +47,18 @@ xxl.job.executor.logretentiondays=30
 xxl.job.admin.username=admin
 # admin 密码
 xxl.job.admin.password=123456
-# 执行器名称
+
+# 执行器名称 非必填写
 xxl.job.executor.title=Exe-Titl
+
 
 # 新增配置项，可选项
 # 执行器地址类型：0=自动注册、1=手动录入，默认为0
 xxl.job.executor.addressType=1
 # 在上面为1的情况下，手动录入执行器地址列表，多地址逗号分隔
 xxl.job.executor.addressList=http://127.0.0.1:9999
+
+
 ```
 
 `XxlJobSpringExecutor`参数配置与之前相同
@@ -63,7 +72,7 @@ public class TestService {
 
     @XxlJob(value = "testJob")
     @XxlRegister(cron = "0 0 0 * * ? *",
-            author = "hydra",
+            author = "fu",
             jobDesc = "测试job")
     public void testJob(){
         System.out.println("#公众号：码农参上");
