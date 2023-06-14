@@ -8,6 +8,7 @@ import com.xxl.job.plus.executor.model.XxlJobGroup;
 import com.xxl.job.plus.executor.model.XxlJobInfo;
 import com.xxl.job.plus.executor.service.JobGroupService;
 import com.xxl.job.plus.executor.service.JobInfoService;
+import com.xxl.job.plus.executor.service.XxlJobProperties;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
@@ -42,6 +43,9 @@ public class XxlJobAutoRegister implements ApplicationListener<ApplicationReadyE
     @Autowired
     private JobInfoService jobInfoService;
 
+    @Autowired
+    private XxlJobProperties xxlJobProperties;
+
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         this.applicationContext=applicationContext;
@@ -49,6 +53,10 @@ public class XxlJobAutoRegister implements ApplicationListener<ApplicationReadyE
 
     @Override
     public void onApplicationEvent(ApplicationReadyEvent event) {
+        if (!xxlJobProperties.getEnable()){
+            log.warn("xxl-job has been closed,please check!!!");
+            return;
+        }
         //注册执行器
         addJobGroup();
         //注册任务

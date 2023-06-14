@@ -59,6 +59,9 @@ public class XxlJobProperties implements Serializable {
     @Value("${xxl.job.admin.password}")
     private String password;
 
+    @Value("${xxl.job.enable:true}")
+    private boolean enable;
+
     public String getAdminAddresses() {
         return adminAddresses;
     }
@@ -162,5 +165,13 @@ public class XxlJobProperties implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public boolean getEnable() {
+        return enable;
+    }
+
+    public void setEnable(boolean enable) {
+        this.enable = enable;
     }
 }
