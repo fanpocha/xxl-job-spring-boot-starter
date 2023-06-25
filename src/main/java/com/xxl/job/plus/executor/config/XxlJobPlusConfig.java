@@ -20,7 +20,7 @@ public class XxlJobPlusConfig {
 
 
 
-    @ConditionalOnProperty(value = "xxl.job.enable", havingValue = "true")
+    @ConditionalOnProperty(value = "xxl.job.enable", havingValue = "true",matchIfMissing = true)
     @Bean
     public XxlJobSpringExecutor xxlJobExecutor( @Autowired XxlJobProperties xxlJobProperties) {
         XxlJobSpringExecutor xxlJobSpringExecutor = new XxlJobSpringExecutor();
