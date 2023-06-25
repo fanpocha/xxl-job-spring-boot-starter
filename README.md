@@ -1,4 +1,4 @@
-## xxljob-autoregister-spring-boot-starter
+## xxl-job-spring-boot-starter
 
 **********************************
 
